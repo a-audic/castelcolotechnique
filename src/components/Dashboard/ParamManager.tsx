@@ -21,18 +21,30 @@ const ParamManager: React.FC = () => {
   };
 
   return (
-    <div className="mb-10">
-      <h3 className="text-xl font-semibold mb-2">Paramètres</h3>
-      <ul className="space-y-1">
+    <section className="bg-white border rounded-lg shadow-sm p-6 mb-8">
+      <h3 className="text-lg font-semibold mb-4">Paramètres</h3>
+      <ul className="space-y-2">
         {params.map((p) => (
-          <li key={p.nom} className="flex items-center space-x-2">
-            <span className="flex-1">{p.nom}: {p.valeur}</span>
-            <button onClick={() => handleUpdate(p)} className="text-blue-600">Modifier</button>
+          <li
+            key={p.nom}
+            className="flex items-center justify-between border rounded px-3 py-2"
+          >
+            <span className="flex-1">
+              {p.nom}: {p.valeur}
+            </span>
+            <button
+              onClick={() => handleUpdate(p)}
+              className="text-blue-600 hover:underline"
+            >
+              Modifier
+            </button>
           </li>
         ))}
-        {params.length === 0 && <li>Aucun paramètre</li>}
+        {params.length === 0 && (
+          <li className="text-sm text-gray-500">Aucun paramètre</li>
+        )}
       </ul>
-    </div>
+    </section>
   );
 };
 

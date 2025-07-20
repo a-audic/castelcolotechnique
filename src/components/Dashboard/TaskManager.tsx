@@ -45,24 +45,61 @@ const TaskManager: React.FC = () => {
   };
 
   return (
-    <div className="mb-10">
-      <h3 className="text-xl font-semibold mb-2">Tâches</h3>
-      <form onSubmit={handleCreate} className="space-x-2 mb-4">
-        <input name="titre" value={form.titre} onChange={handleChange} placeholder="Titre" className="border px-2" />
-        <input name="description" value={form.description} onChange={handleChange} placeholder="Description" className="border px-2" />
-        <button type="submit" className="bg-green-600 text-white px-3 rounded">Ajouter</button>
+    <section className="bg-white border rounded-lg shadow-sm p-6 mb-8">
+      <h3 className="text-lg font-semibold mb-4">Tâches</h3>
+      <form
+        onSubmit={handleCreate}
+        className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-6"
+      >
+        <input
+          name="titre"
+          value={form.titre}
+          onChange={handleChange}
+          placeholder="Titre"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          placeholder="Description"
+          className="border rounded px-2 py-1"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-3 py-1 rounded"
+        >
+          Ajouter
+        </button>
       </form>
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {tasks.map((t) => (
-          <li key={t.id} className="flex items-center space-x-2">
-            <span className="flex-1">{t.titre}</span>
-            <button onClick={() => handleUpdate(t)} className="text-blue-600">Modifier</button>
-            <button onClick={() => handleDelete(t.id)} className="text-red-600">Supprimer</button>
+          <li
+            key={t.id}
+            className="flex items-center justify-between border rounded px-3 py-2"
+          >
+            <span>{t.titre}</span>
+            <div className="space-x-2">
+              <button
+                onClick={() => handleUpdate(t)}
+                className="text-blue-600 hover:underline"
+              >
+                Modifier
+              </button>
+              <button
+                onClick={() => handleDelete(t.id)}
+                className="text-red-600 hover:underline"
+              >
+                Supprimer
+              </button>
+            </div>
           </li>
         ))}
-        {tasks.length === 0 && <li>Aucune tâche</li>}
+        {tasks.length === 0 && (
+          <li className="text-sm text-gray-500">Aucune tâche</li>
+        )}
       </ul>
-    </div>
+    </section>
   );
 };
 

@@ -56,27 +56,82 @@ const AgentManager: React.FC = () => {
   };
 
   return (
-    <div className="mb-10">
-      <h3 className="text-xl font-semibold mb-2">Agents</h3>
-      <form onSubmit={handleCreate} className="space-x-2 mb-4">
-        <input name="prenom" value={form.prenom} onChange={handleChange} placeholder="Prénom" className="border px-2" />
-        <input name="nom" value={form.nom} onChange={handleChange} placeholder="Nom" className="border px-2" />
-        <input name="poste" value={form.poste} onChange={handleChange} placeholder="Poste" className="border px-2" />
-        <input name="telephone" value={form.telephone} onChange={handleChange} placeholder="Téléphone" className="border px-2" />
-        <input name="email" value={form.email} onChange={handleChange} placeholder="Email" className="border px-2" />
-        <button type="submit" className="bg-green-600 text-white px-3 rounded">Ajouter</button>
+    <section className="bg-white border rounded-lg shadow-sm p-6 mb-8">
+      <h3 className="text-lg font-semibold mb-4">Agents</h3>
+      <form
+        onSubmit={handleCreate}
+        className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-6"
+      >
+        <input
+          name="prenom"
+          value={form.prenom}
+          onChange={handleChange}
+          placeholder="Prénom"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="nom"
+          value={form.nom}
+          onChange={handleChange}
+          placeholder="Nom"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="poste"
+          value={form.poste}
+          onChange={handleChange}
+          placeholder="Poste"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="telephone"
+          value={form.telephone}
+          onChange={handleChange}
+          placeholder="Téléphone"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="Email"
+          className="border rounded px-2 py-1"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-3 py-1 rounded"
+        >
+          Ajouter
+        </button>
       </form>
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {agents.map((a) => (
-          <li key={a.id} className="flex items-center space-x-2">
-            <span className="flex-1">{a.prenom} {a.nom} - {a.poste}</span>
-            <button onClick={() => handleUpdate(a)} className="text-blue-600">Modifier</button>
-            <button onClick={() => handleDelete(a.id)} className="text-red-600">Supprimer</button>
+          <li
+            key={a.id}
+            className="flex items-center justify-between border rounded px-3 py-2"
+          >
+            <span>
+              {a.prenom} {a.nom} - {a.poste}
+            </span>
+            <div className="space-x-2">
+              <button
+                onClick={() => handleUpdate(a)}
+                className="text-blue-600 hover:underline"
+              >
+                Modifier
+              </button>
+              <button
+                onClick={() => handleDelete(a.id)}
+                className="text-red-600 hover:underline"
+              >
+                Supprimer
+              </button>
+            </div>
           </li>
         ))}
-        {agents.length === 0 && <li>Aucun agent</li>}
+        {agents.length === 0 && <li className="text-sm text-gray-500">Aucun agent</li>}
       </ul>
-    </div>
+    </section>
   );
 };
 

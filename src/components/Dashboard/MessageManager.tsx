@@ -38,25 +38,69 @@ const MessageManager: React.FC = () => {
   };
 
   return (
-    <div className="mb-10">
-      <h3 className="text-xl font-semibold mb-2">Messages</h3>
-      <form onSubmit={handleCreate} className="space-x-2 mb-4">
-        <input name="auteur" value={form.auteur} onChange={handleChange} placeholder="Auteur" className="border px-2" />
-        <input name="destinataire" value={form.destinataire} onChange={handleChange} placeholder="Destinataire" className="border px-2" />
-        <input name="contenu" value={form.contenu} onChange={handleChange} placeholder="Contenu" className="border px-2" />
-        <input name="date" value={form.date} onChange={handleChange} placeholder="Date" className="border px-2" />
-        <button type="submit" className="bg-green-600 text-white px-3 rounded">Ajouter</button>
+    <section className="bg-white border rounded-lg shadow-sm p-6 mb-8">
+      <h3 className="text-lg font-semibold mb-4">Messages</h3>
+      <form
+        onSubmit={handleCreate}
+        className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-6"
+      >
+        <input
+          name="auteur"
+          value={form.auteur}
+          onChange={handleChange}
+          placeholder="Auteur"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="destinataire"
+          value={form.destinataire}
+          onChange={handleChange}
+          placeholder="Destinataire"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="contenu"
+          value={form.contenu}
+          onChange={handleChange}
+          placeholder="Contenu"
+          className="border rounded px-2 py-1"
+        />
+        <input
+          name="date"
+          value={form.date}
+          onChange={handleChange}
+          placeholder="Date"
+          className="border rounded px-2 py-1"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-3 py-1 rounded"
+        >
+          Ajouter
+        </button>
       </form>
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {messages.map((m) => (
-          <li key={m.id} className="flex items-center space-x-2">
-            <span className="flex-1">{m.auteur} → {m.destinataire}: {m.contenu}</span>
-            <button onClick={() => handleDelete(m.id)} className="text-red-600">Supprimer</button>
+          <li
+            key={m.id}
+            className="flex items-center justify-between border rounded px-3 py-2"
+          >
+            <span className="flex-1">
+              {m.auteur} → {m.destinataire}: {m.contenu}
+            </span>
+            <button
+              onClick={() => handleDelete(m.id)}
+              className="text-red-600 hover:underline"
+            >
+              Supprimer
+            </button>
           </li>
         ))}
-        {messages.length === 0 && <li>Aucun message</li>}
+        {messages.length === 0 && (
+          <li className="text-sm text-gray-500">Aucun message</li>
+        )}
       </ul>
-    </div>
+    </section>
   );
 };
 
