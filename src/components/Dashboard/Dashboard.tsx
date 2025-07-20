@@ -1,6 +1,12 @@
 import React from 'react';
 import { AuthService } from '../../services/authService';
 import { User } from '../../types';
+import AgentManager from './AgentManager';
+import TaskManager from './TaskManager';
+import IncidentManager from './IncidentManager';
+import PlanningManager from './PlanningManager';
+import MessageManager from './MessageManager';
+import ParamManager from './ParamManager';
 
 interface DashboardProps {
   user: User;
@@ -22,6 +28,14 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
       >
         Se déconnecter
       </button>
+      <div className="space-y-8 mt-6">
+        <AgentManager />
+        <TaskManager />
+        <IncidentManager />
+        <PlanningManager />
+        <MessageManager />
+        <ParamManager />
+      </div>
     </div>
   );
 };
